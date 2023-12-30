@@ -19,13 +19,13 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Frédéric travels
-email: travel@fredericvogel.ch
+email:
 description: >- # this means to ignore newlines until "baseurl:"
   Photos of my recent travels
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://travel.fredericvogel.ch" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
-github_username:  vogelfr
+github_username:
 
 # Build settings
 theme: minima
