@@ -1,0 +1,17 @@
+<div id="{{include.albumname}}">
+
+    {% for image in site.static_files %}
+        {% if image.path contains 'assets/images' and image.path contains include.albumname %}
+        <a href="{{ image.path }}" data-sub-html="{% exiftag exposure_time.to_s, , {{ image.path }}%}s, &#119891;/{% exiftag f_number.to_f, , {{  image.path }} %}" > 
+                <img src="/assets/thumbnails{{ image.path | remove_first: "assets/" }}" style="padding-bottom: 5px;" />
+            </a>
+        {% endif %}
+    {% endfor %}
+
+</div>
+<script>
+    $('#{{include.albumname}}').lightGallery({
+    thumbnail:true,
+    selector: 'a'
+});
+</script>
