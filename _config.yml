@@ -24,7 +24,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Photos of my recent travels
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://travel.fredericvogel.ch" # the base hostname & protocol for your site, e.g. http://example.com
-author: © 2024, Frédéric Vogel
+author: Frédéric Vogel
 
 google_analytics: G-S5C5X23FJN
 
