@@ -26,6 +26,8 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://travel.fredericvogel.ch" # the base hostname & protocol for your site, e.g. http://example.com
 author: © 2024, Frédéric Vogel
 
+google_analytics: G-S5C5X23FJN
+
 # Build settings
 theme: minima
 plugins:
@@ -33,6 +35,15 @@ plugins:
   - webrick
   - mini_magick
   - exifr 
+
+# Theme Settings
+minima:
+  date_format: "%F"
+header_pages:
+  - norway.md
+  - map.md
+  - tracker.md
+  - about.md
 
 # Collections
 collections:

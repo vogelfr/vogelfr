@@ -4,4 +4,4 @@ title: Tracker
 permalink: /tracker/
 ---
 
-{% include map.html %}
+{% include tracker.html %}
