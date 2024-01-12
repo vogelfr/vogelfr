@@ -6,6 +6,6 @@ title: Norway
 ---
 
 {% for item in site.norway %}
-### {{ item.date | date: "%F" }} -- {{ item.location }}
+### {{ item.title }}
 {{ item.content }}
 {% endfor %}

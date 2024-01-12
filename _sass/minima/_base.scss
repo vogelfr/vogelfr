@@ -60,7 +60,7 @@ img {
 }
 
 .gallery-item {
-  width: 200px
+  width: 25%
 }
 
 .gallery-item img {
@@ -79,6 +79,9 @@ img {
   border: solid white 3px;
 }
 
+.lg-content {
+  max-height: 95% !important;
+}
 
 /**
  * Figures

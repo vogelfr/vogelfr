@@ -7,7 +7,12 @@
                 var lat = {% exiftag gps_latitude.to_f, , {{ image.path }} %};
                 var lng = {% exiftag gps_longitude.to_f, , {{ image.path }} %};
                 var DMS = convertDMS(lat, lng);
-                var subHtml = "{% exiftag model, , {{ image.path }}%}, {% exiftag focal_length.to_f, , {{ image.path }}%}mm, {% exiftag exposure_time.to_s, , {{ image.path }}%}s, &#119891;/{% exiftag f_number.to_f, , {{  image.path }} %}, ISO {% exiftag iso_speed_ratings, , {{ image.path }}%}, <a href='{% link map.md %}?lng={% exiftag gps.longitude, , {{ image.path }} %}&lat={% exiftag gps.latitude, , {{ image.path }} %}'>" + DMS + "</a>";
+                var date = "{% exiftag date_time_original, , {{ image.path }} %}".substring(0, 16);
+                var subHtml = `<small>${date}, {% exiftag model, , {{ image.path }} %}, {% exiftag focal_length.to_f, , {{ image.path }} %}mm, {% exiftag exposure_time.to_s, , {{ image.path }} %}s, &#119891;/{% exiftag f_number.to_f, , {{  image.path }} %}, ISO {% exiftag iso_speed_ratings, , {{ image.path }} %}, <a style="text-decoration: underline;" href='{% link map.md %}?lng=${lng}&lat=${lat}'>${DMS}</a></small>`;
+                var caption = "{% exiftag image_description, , {{ image.path }} %}"
+                if (caption !== "") {
+                    subHtml += `<br>${caption}`;
+                }
                 var aTag = document.createElement("a");
                 aTag.href = "{{ image.path }}";
                 aTag.classList.add("gallery-item")

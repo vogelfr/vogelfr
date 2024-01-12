@@ -50,7 +50,8 @@ const height = 100;
 var lat = {% exiftag gps_latitude.to_f, , {{ image.path }} %};
 var lng = {% exiftag gps_longitude.to_f, , {{ image.path }} %};
 var DMS = convertDMS(lat, lng);
-var subHtml = "{% exiftag model, , {{ image.path }}%}, {% exiftag focal_length.to_f, , {{ image.path }}%}mm, {% exiftag exposure_time.to_s, , {{ image.path }}%}s, &#119891;/{% exiftag f_number.to_f, , {{  image.path }} %}, ISO {% exiftag iso_speed_ratings, , {{ image.path }}%}, <a href='{% link map.md %}?lng={% exiftag gps.longitude, , {{ image.path }} %}&lat={% exiftag gps.latitude, , {{ image.path }} %}'>" + DMS + "</a>";
+var date = "{% exiftag date_time_original, , {{ image.path }} %}".substring(0, 16);
+var subHtml = `<small>${date}, {% exiftag model, , {{ image.path }} %}, {% exiftag focal_length.to_f, , {{ image.path }} %}mm, {% exiftag exposure_time.to_s, , {{ image.path }} %}s, &#119891;/{% exiftag f_number.to_f, , {{  image.path }} %}, ISO {% exiftag iso_speed_ratings, , {{ image.path }} %}, <a style="text-decoration: underline;" href='{% link map.md %}?lng=${lng}&lat=${lat}'>${DMS}</a></small>`;
 
 // Create a DOM element for each marker.
 var el = document.createElement('div');
@@ -59,19 +60,10 @@ el.id = "{{ image.path | remove_first: '/' | replace: '/', '-' }}";
 el.style.backgroundImage = "url({{ image.path }})";
 el.style.width = `${width}px`;
 el.style.height = `${height}px`;
-el.style.backgroundSize = '100%';
-         
-var aTag = document.createElement("a");
-aTag.href = "{{ image.path }}";
-aTag.classList.add("gallery-item")
-aTag.dataset.subHtml = subHtml;
+el.style.backgroundSize = 'cover';
+el.dataset.src = "{{ image.path }}";
+el.dataset.subHtml = subHtml;
 
-var imgTag = document.createElement("img");
-imgTag.style = "visibility: hidden";
-imgTag.src = "/assets/thumbnails{{ image.path | remove_first: "assets/" }}";
-aTag.appendChild(imgTag);
-
-el.appendChild(aTag);
  
 // Add markers to the map.
 new mapboxgl.Marker(el)
@@ -82,7 +74,7 @@ new mapboxgl.Marker(el)
 
 <script>
   lightGallery(document.getElementById("map"), {
-        selector: 'a',
+        selector: '.marker',
     });
 </script>
 

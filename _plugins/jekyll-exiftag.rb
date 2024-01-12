@@ -25,6 +25,7 @@
 #
 
 require 'exifr/jpeg'
+require 'time'
 
 module Jekyll
   class ExifTag < Liquid::Tag
