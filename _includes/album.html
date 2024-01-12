@@ -1,17 +1,30 @@
-<div id="{{include.albumname}}">
+<script src="{{ base.url | prepend: site.url }}/assets/js/helper.js"></script>
 
+<div id="{{include.album}}">
     {% for image in site.static_files %}
-        {% if image.path contains 'assets/images' and image.path contains include.albumname %}
-        <a href="{{ image.path }}" data-sub-html="{% exiftag exposure_time.to_s, , {{ image.path }}%}s, &#119891;/{% exiftag f_number.to_f, , {{  image.path }} %}" > 
-                <img src="/assets/thumbnails{{ image.path | remove_first: "assets/" }}" style="padding-bottom: 5px;" />
-            </a>
+        {% if image.path contains 'assets/images' and image.path contains include.album %}
+            <script>
+                var lat = {% exiftag gps_latitude.to_f, , {{ image.path }} %};
+                var lng = {% exiftag gps_longitude.to_f, , {{ image.path }} %};
+                var DMS = convertDMS(lat, lng);
+                var subHtml = "{% exiftag model, , {{ image.path }}%}, {% exiftag focal_length.to_f, , {{ image.path }}%}mm, {% exiftag exposure_time.to_s, , {{ image.path }}%}s, &#119891;/{% exiftag f_number.to_f, , {{  image.path }} %}, ISO {% exiftag iso_speed_ratings, , {{ image.path }}%}, <a href='{% link map.md %}?lng={% exiftag gps.longitude, , {{ image.path }} %}&lat={% exiftag gps.latitude, , {{ image.path }} %}'>" + DMS + "</a>";
+                var aTag = document.createElement("a");
+                aTag.href = "{{ image.path }}";
+                aTag.classList.add("gallery-item")
+                aTag.dataset.subHtml = subHtml;
+                var imgTag = document.createElement("img");
+                imgTag.src = "/assets/thumbnails{{ image.path | remove_first: "assets/" }}"
+                aTag.appendChild(imgTag)
+                document.getElementById('{{ include.album }}').appendChild(aTag);
+
+            </script>
         {% endif %}
     {% endfor %}
-
 </div>
 <script>
-    $('#{{include.albumname}}').lightGallery({
-    thumbnail:true,
-    selector: 'a'
-});
+    lightGallery(document.getElementById('{{ include.album }}'), {
+        plugins: [lgThumbnail, lgHash],
+        thumbnail:true,
+        selector: 'a',
+    });
 </script>

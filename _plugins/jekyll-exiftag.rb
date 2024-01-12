@@ -72,8 +72,7 @@ module Jekyll
         ret = tag.split('.').inject(exif){|o,m| o.send(m)}
         return ret
       rescue StandardError => e  
-        puts e.message 
-        file_name
+        puts e.message
       end
     end
 

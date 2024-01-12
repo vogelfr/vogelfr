@@ -34,7 +34,7 @@ plugins:
   - jekyll-feed
   - webrick
   - mini_magick
-  - exifr 
+  - exifr
 
 # Theme Settings
 minima:

@@ -1,14 +1,88 @@
 <div id='map'></div>
+<script src="{{ base.url | prepend: site.url }}/assets/js/helper.js"></script>
+
 <script>
+
+const urlParams = new URLSearchParams(window.location.search);
+var lat = urlParams.get('lat');
+var lng = urlParams.get('lng');
+if (!urlParams.has('lat')) {
+    lat = 69.65;
+}
+if (!urlParams.has('lat')) {
+  lng = 18.96;
+}
+
+
 mapboxgl.accessToken = 'pk.eyJ1Ijoidm9nZWxmciIsImEiOiJjbHFyZTZ1cGg0ZnhyMnF0azBzdGxxY3M4In0.YRmYSadxVSGzAZTd55E6hA';
 const map = new mapboxgl.Map({
 	container: 'map', // container ID
 	style: 'mapbox://styles/mapbox/outdoors-v11', // style URL
-	center:[8.5, 47.1], // starting position [lng, lat]
+	center:[lng, lat], // starting position [lng, lat]
 	zoom: 9, // starting zoom
     projection: 'globe'
 });
 map.addControl(new mapboxgl.NavigationControl(visualizePitch = true));
-</script>
 
+
+
+var geoJSON = {"type": "FeatureCollection",
+                "features": [{% for image in site.static_files %}{% if image.path contains 'assets/images' %}
+                      {"type": "Feature",
+                       "geometry": {
+                          "type": "Point",
+                          "coordinates": [{% exiftag gps.longitude, , {{ image.path }} %}, {% exiftag gps.latitude, , {{ image.path }} %}]
+                       },
+                       "properties": {
+                         "iconimage": "{{ image.path }}"
+                       }
+                      },{% endif %}{% endfor %}
+                ]};
+
+
+//for (const marker of geoJSON.features) {
+const width = 100;
+const height = 100;
+</script>
+{% for image in site.static_files %}{% if image.path contains 'assets/images' %}
+<script>
+
+var lat = {% exiftag gps_latitude.to_f, , {{ image.path }} %};
+var lng = {% exiftag gps_longitude.to_f, , {{ image.path }} %};
+var DMS = convertDMS(lat, lng);
+var subHtml = "{% exiftag model, , {{ image.path }}%}, {% exiftag focal_length.to_f, , {{ image.path }}%}mm, {% exiftag exposure_time.to_s, , {{ image.path }}%}s, &#119891;/{% exiftag f_number.to_f, , {{  image.path }} %}, ISO {% exiftag iso_speed_ratings, , {{ image.path }}%}, <a href='{% link map.md %}?lng={% exiftag gps.longitude, , {{ image.path }} %}&lat={% exiftag gps.latitude, , {{ image.path }} %}'>" + DMS + "</a>";
+
+// Create a DOM element for each marker.
+var el = document.createElement('div');
+el.className = 'marker';
+el.id = "{{ image.path | remove_first: '/' | replace: '/', '-' }}";
+el.style.backgroundImage = "url({{ image.path }})";
+el.style.width = `${width}px`;
+el.style.height = `${height}px`;
+el.style.backgroundSize = '100%';
+         
+var aTag = document.createElement("a");
+aTag.href = "{{ image.path }}";
+aTag.classList.add("gallery-item")
+aTag.dataset.subHtml = subHtml;
+
+var imgTag = document.createElement("img");
+imgTag.style = "visibility: hidden";
+imgTag.src = "/assets/thumbnails{{ image.path | remove_first: "assets/" }}";
+aTag.appendChild(imgTag);
+
+el.appendChild(aTag);
+ 
+// Add markers to the map.
+new mapboxgl.Marker(el)
+.setLngLat([lng, lat])
+.addTo(map);
+</script>
+{% endif %}{% endfor %}
+
+<script>
+  lightGallery(document.getElementById("map"), {
+        selector: 'a',
+    });
+</script>
 
