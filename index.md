@@ -5,7 +5,7 @@
 layout: home
 ---
 
-{% for item in site.norway %}
+{% for item in site.norway reversed %}
 ## {{ item.title }}
 {{ item.content }}
 {% endfor %}

@@ -58,6 +58,9 @@ mini_magick:
     gravity: "center"
     extent: "240x240"
 
+kramdown:
+  entity_output: :as_input
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

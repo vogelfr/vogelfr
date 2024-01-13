@@ -45,8 +45,9 @@ const width = 100;
 const height = 100;
 </script>
 {% for image in site.static_files %}{% if image.path contains 'assets/images' %}
-<script>
+<div class="marker" id="{{ image.path | remove_first: '/' | replace: '/', '-' }}" style="background-image: url({{ image.path }}); width: 100px; height: 100px; background-size: cover;" data-src="{{ image.path }}"></div>
 
+<script>
 var lat = {% exiftag gps_latitude.to_f, , {{ image.path }} %};
 var lng = {% exiftag gps_longitude.to_f, , {{ image.path }} %};
 var DMS = convertDMS(lat, lng);
@@ -54,16 +55,8 @@ var date = "{% exiftag date_time_original, , {{ image.path }} %}".substring(0, 1
 var subHtml = `<small>${date}, {% exiftag model, , {{ image.path }} %}, {% exiftag focal_length.to_f, , {{ image.path }} %}mm, {% exiftag exposure_time.to_s, , {{ image.path }} %}s, &#119891;/{% exiftag f_number.to_f, , {{  image.path }} %}, ISO {% exiftag iso_speed_ratings, , {{ image.path }} %}, <a style="text-decoration: underline;" href='{% link map.md %}?lng=${lng}&lat=${lat}'>${DMS}</a></small>`;
 
 // Create a DOM element for each marker.
-var el = document.createElement('div');
-el.className = 'marker';
-el.id = "{{ image.path | remove_first: '/' | replace: '/', '-' }}";
-el.style.backgroundImage = "url({{ image.path }})";
-el.style.width = `${width}px`;
-el.style.height = `${height}px`;
-el.style.backgroundSize = 'cover';
-el.dataset.src = "{{ image.path }}";
+var el = document.getElementById("{{ image.path | remove_first: '/' | replace: '/', '-' }}");
 el.dataset.subHtml = subHtml;
-
  
 // Add markers to the map.
 new mapboxgl.Marker(el)

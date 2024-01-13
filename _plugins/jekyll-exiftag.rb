@@ -1,3 +1,4 @@
+# encoding: utf-8
 # -*- coding: utf-8 -*-
 # A LiquidTag to get Exif Tags using EXIFR
 # by: Beni Buess
@@ -71,6 +72,10 @@ module Jekyll
       begin
         exif = EXIFR::JPEG::new(file_name)
         ret = tag.split('.').inject(exif){|o,m| o.send(m)}
+        if ret.is_a? String
+          ret.force_encoding('UTF-8')
+        end
+        puts ret
         return ret
       rescue StandardError => e  
         puts e.message

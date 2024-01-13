@@ -3,25 +3,22 @@
 <div id="{{include.album}}">
     {% for image in site.static_files %}
         {% if image.path contains 'assets/images' and image.path contains include.album %}
+            <a href="{{ image.path }}" class="gallery-item" id="{{ image.path | remove_first: '/' | replace: '/', '-' }}">
+                <img src="/assets/thumbnails{{ image.path | remove_first: 'assets/' }}">
+            </a>
             <script>
                 var lat = {% exiftag gps_latitude.to_f, , {{ image.path }} %};
                 var lng = {% exiftag gps_longitude.to_f, , {{ image.path }} %};
                 var DMS = convertDMS(lat, lng);
                 var date = "{% exiftag date_time_original, , {{ image.path }} %}".substring(0, 16);
                 var subHtml = `<small>${date}, {% exiftag model, , {{ image.path }} %}, {% exiftag focal_length.to_f, , {{ image.path }} %}mm, {% exiftag exposure_time.to_s, , {{ image.path }} %}s, &#119891;/{% exiftag f_number.to_f, , {{  image.path }} %}, ISO {% exiftag iso_speed_ratings, , {{ image.path }} %}, <a style="text-decoration: underline;" href='{% link map.md %}?lng=${lng}&lat=${lat}'>${DMS}</a></small>`;
-                var caption = "{% exiftag image_description, , {{ image.path }} %}"
+                var caption = String.raw`{% exiftag image_description, , {{ image.path }} %}`; // should be image_description
+                caption = caption.replace(`\\xC3\\xB8`, 'f');
                 if (caption !== "") {
                     subHtml += `<br>${caption}`;
                 }
-                var aTag = document.createElement("a");
-                aTag.href = "{{ image.path }}";
-                aTag.classList.add("gallery-item")
+                var aTag = document.getElementById("{{ image.path | remove_first: '/' | replace: '/', '-' }}");
                 aTag.dataset.subHtml = subHtml;
-                var imgTag = document.createElement("img");
-                imgTag.src = "/assets/thumbnails{{ image.path | remove_first: "assets/" }}"
-                aTag.appendChild(imgTag)
-                document.getElementById('{{ include.album }}').appendChild(aTag);
-
             </script>
         {% endif %}
     {% endfor %}
