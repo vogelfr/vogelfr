@@ -75,7 +75,6 @@ module Jekyll
         if ret.is_a? String
           ret.force_encoding('UTF-8')
         end
-        puts ret
         return ret
       rescue StandardError => e  
         puts e.message
