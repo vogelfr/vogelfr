@@ -7,10 +7,10 @@ const urlParams = new URLSearchParams(window.location.search);
 var lat = urlParams.get('lat');
 var lng = urlParams.get('lng');
 if (!urlParams.has('lat')) {
-    lat = 69.65;
+    lat = 68.29;
 }
 if (!urlParams.has('lat')) {
-  lng = 18.96;
+  lng = 14.7;
 }
 
 
@@ -19,7 +19,7 @@ const map = new mapboxgl.Map({
 	container: 'map', // container ID
 	style: 'mapbox://styles/mapbox/outdoors-v11', // style URL
 	center:[lng, lat], // starting position [lng, lat]
-	zoom: 9, // starting zoom
+	zoom: 6, // starting zoom
     projection: 'globe'
 });
 map.addControl(new mapboxgl.NavigationControl(visualizePitch = true));
