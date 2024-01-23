@@ -15,7 +15,7 @@ dl, dd, ol, ul, figure {
  */
 body {
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
-  color: $text-color;
+  color: $text-color-light;
   background-color: $background-color;
   -webkit-text-size-adjust: 100%;
   -webkit-font-feature-settings: "kern" 1;
@@ -37,7 +37,8 @@ h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-  margin-bottom: calc($spacing-unit / 2);
+  margin-bottom: calc($spacing-unit / 2.5);
+  margin-top: calc($spacing-unit/2);
 }
 
 
@@ -117,23 +118,23 @@ li {
  */
 h1, h2, h3, h4, h5, h6 {
   font-weight: $title-font-weight;
+  color: $text-color-light;
 }
-
 
 
 /**
  * Links
  */
 a {
-  color: $brand-color;
+  color: $text-color-light;
   text-decoration: none;
 
   &:visited {
-    color: darken($brand-color, 15%);
+    color: darken($text-color-light, 30%);
   }
 
   &:hover {
-    color: $text-color;
+    color: lighten($brand-color, 30%);
     text-decoration: underline;
   }
 
