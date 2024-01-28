@@ -1,5 +1,6 @@
 ---
 title: Haukland - Høgtaen
+date: 2024-01-24
 ---
 
 {% include album.html album='2024-01-24' %}
