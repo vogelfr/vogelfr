@@ -85,7 +85,7 @@
       text-align: center;
 
       > svg {
-        fill: $brand-color;
+        fill: $text-color-light;
       }
     }
 
@@ -100,7 +100,7 @@
     }
 
     .page-link {
-      color: $brand-color;
+      color: $text-color-light;
       display: block;
       padding: 5px 10px;
 
