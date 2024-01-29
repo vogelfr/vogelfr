@@ -24,7 +24,9 @@
 <script>
     lightGallery(document.getElementById('{{ include.album }}'), {
         plugins: [lgThumbnail, lgFullscreen, lgZoom],
-        thumbnail:true,
+        thumbnail: true,
+        toggleThumb: true,
         selector: 'a',
+        mobileSettings: { controls: false, showCloseIcon: false, download: false, thumbnail: false}
     });
 </script>
