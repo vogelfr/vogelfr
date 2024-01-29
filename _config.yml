@@ -46,8 +46,10 @@ header_pages:
 
 # Collections
 collections:
-  - norway
-  - south-america
+  norway:
+    output: true
+  south-america:
+    output: false
 
 mini_magick:
   thumbnail: # Preset name

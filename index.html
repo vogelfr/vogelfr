@@ -1,0 +1,17 @@
+---
+layout: home
+---
+
+<div class="archive tag-master">
+	<div class="post-list">
+  {% assign posts = site.norway | reverse %}
+	{% for post in posts limit: 3 %}
+		<div class="post">
+      <div class="post-content">
+        {{ post.content }}
+      </div>
+		</div>
+	{% endfor %}
+	</div>
+</div>
+<div class="infinite-spinner"></div>

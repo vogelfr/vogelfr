@@ -1,5 +1,3 @@
-<script src="{{ base.url | prepend: site.url }}/assets/js/helper.js"></script>
-
 <div id="{{include.album}}">
     {% for image in site.static_files %}
         {% if image.path contains 'assets/images' and image.path contains include.album %}
@@ -12,7 +10,7 @@
                 var DMS = convertDMS(lat, lng);
                 var date = "{% exiftag date_time_original, , {{ image.path }} %}".substring(0, 16);
                 var subHtml = `<small>${date}, {% exiftag model, , {{ image.path }} %}, {% exiftag focal_length.to_f, , {{ image.path }} %}mm, {% exiftag exposure_time.to_s, , {{ image.path }} %}s, &#119891;/{% exiftag f_number.to_f, , {{  image.path }} %}, ISO {% exiftag iso_speed_ratings, , {{ image.path }} %}, <a style="text-decoration: underline;" href='{% link map.md %}?lng=${lng}&lat=${lat}'>${DMS}</a></small>`;
-                var caption = String.raw`{% exiftag image_description, , {{ image.path }} %}`; // should be image_description
+                var caption = String.raw`{% exiftag image_description, , {{ image.path }} %}`;
                 caption = caption.replace(`\\xC3\\xB8`, 'f');
                 if (caption !== "") {
                     subHtml += `<br>${caption}`;
@@ -25,7 +23,7 @@
 </div>
 <script>
     lightGallery(document.getElementById('{{ include.album }}'), {
-        plugins: [lgThumbnail, lgHash],
+        plugins: [lgThumbnail],
         thumbnail:true,
         selector: 'a',
     });

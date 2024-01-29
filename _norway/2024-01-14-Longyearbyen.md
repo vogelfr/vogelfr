@@ -1,5 +1,7 @@
 ---
 title: Longyearbyen
+layout: album-page
 ---
-
-{% include album.html album='2024-01-14' %}
+## {{ page.date | date: "%Y-%m-%d" }} – {{ page.title }}
+{% capture album-date %}{{ page.date | date: "%Y-%m-%d" }}{% endcapture %}
+{% include album.html album=album-date %}
