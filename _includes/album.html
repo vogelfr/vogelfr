@@ -23,10 +23,11 @@
 </div>
 <script>
     lightGallery(document.getElementById('{{ include.album }}'), {
-        plugins: [lgThumbnail, lgFullscreen, lgZoom],
+        plugins: [lgThumbnail, lgFullscreen, lgZoom, lgHash],
         thumbnail: true,
         toggleThumb: true,
         selector: 'a',
+        galleryId: '{{ include.album }}',
         mobileSettings: { controls: false, showCloseIcon: false, download: false, thumbnail: false, fullScreen: true}
     });
 </script>
