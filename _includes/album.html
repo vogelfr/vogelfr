@@ -1,6 +1,7 @@
 <div id="{{include.album}}">
     {% for image in site.static_files %}
-        {% if image.path contains 'assets/images' and image.path contains include.album %}
+        {% assign search-path = 'assets/images/' | append: include.album %}
+        {% if image.path contains search-path %}
             <a href="{{ image.path }}" class="gallery-item" id="{{ image.path | remove_first: '/' | replace: '/', '-' }}">
                 <img src="/assets/thumbnails{{ image.path | remove_first: 'assets/' }}">
             </a>
