@@ -1,5 +1,5 @@
 ---
-title: Kárášjohka - Saunalampi, FI
+title: Kárášjohka - Saunalampi
 layout: album-page
 date: 2024-02-15
 ---
