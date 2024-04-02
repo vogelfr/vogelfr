@@ -10,10 +10,10 @@ const urlParams = new URLSearchParams(window.location.search);
 var lat = urlParams.get('lat');
 var lng = urlParams.get('lng');
 if (!urlParams.has('lat')) {
-    lat = 68.29;
+    lat = -17.63;
 }
 if (!urlParams.has('lat')) {
-  lng = 14.7;
+  lng = -58.28;
 }
 
 
@@ -22,7 +22,7 @@ const map = new mapboxgl.Map({
 	container: 'map', // container ID
 	style: 'mapbox://styles/mapbox/outdoors-v11', // style URL
 	center:[lng, lat], // starting position [lng, lat]
-	zoom: 4, // starting zoom
+	zoom: 3, // starting zoom
     projection: 'globe'
 });
 map.addControl(new mapboxgl.NavigationControl(visualizePitch = true));
@@ -63,7 +63,11 @@ const height = 100;
 <script>
 var lat = {% exiftag gps_latitude.to_f, , {{ image.path }} %};
 var lng = {% exiftag gps_longitude.to_f, , {{ image.path }} %};
-var DMS = convertDMS(lat, lng);
+var latRef = "{% exiftag gps_latitude_ref, , {{ image.path }} %}";
+var lngRef = "{% exiftag gps_longitude_ref, , {{ image.path }} %}";
+var DMS = convertDMS(lat, latRef, lng, lngRef);
+lat = latRef == "N" ? lat : -lat;
+lng = lngRef == "E" ? lng : -lng;
 var date = "{% exiftag date_time_original, , {{ image.path }} %}".substring(0, 16);
 var subHtml = `<small>${date}, {% exiftag model, , {{ image.path }} %}, {% exiftag focal_length.to_f, , {{ image.path }} %}mm, {% exiftag exposure_time.to_s, , {{ image.path }} %}s, &#119891;/{% exiftag f_number.to_f, , {{  image.path }} %}, ISO {% exiftag iso_speed_ratings, , {{ image.path }} %}, <a style="text-decoration: underline;" href='{% link map.md %}?lng=${lng}&lat=${lat}'>${DMS}</a></small>`;
 

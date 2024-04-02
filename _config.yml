@@ -40,16 +40,16 @@ plugins:
 minima:
   date_format: "%Y-%m-%d"
 header_pages:
-  - norway.md
+  - south-america.md
   - map.md
   - tracker.md
 
 # Collections
 collections:
   norway:
-    output: true
-  south-america:
     output: false
+  south-america:
+    output: true
 
 mini_magick:
   thumbnail: # Preset name

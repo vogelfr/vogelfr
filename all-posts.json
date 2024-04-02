@@ -3,7 +3,7 @@ layout: null
 ---
 {
   "posts" : [
-    {% for post in site.norway reversed %}
+    {% for post in site.south-america reversed %}
     "{{ post.url }}"{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ]

@@ -8,12 +8,16 @@ function toDegreesMinutesAndSeconds(coordinate) {
   return degrees + "°" + minutes + "'" + seconds + '"';
 }
 
-function convertDMS(lat, lng) {
+function convertDMS(lat, latRef, lng, lngRef) {
+  
   var latitude = toDegreesMinutesAndSeconds(lat);
-  var latitudeCardinal = lat >= 0 ? "N" : "S";
 
   var longitude = toDegreesMinutesAndSeconds(lng);
-  var longitudeCardinal = lng >= 0 ? "E" : "W";
 
-  return latitude + " " + latitudeCardinal + ", " + longitude + " " + longitudeCardinal;
+  console.log("Latitude orig:\t" + lat);
+  console.log("Longitute orig:\t" + lng);
+  console.log("Latitude card:\t" + latRef);
+  console.log("Longitute card:\t" + lngRef);
+
+  return latitude + " " + latRef + ", " + longitude + " " + lngRef;
 }
