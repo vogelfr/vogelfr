@@ -1,8 +1,8 @@
 ---
-title: El Chaltén
+title: Puerto Montt
 layout: album-page
-date: 2024-03-28
+date: 2024-04-13
 ---
-## 28–31 March 2024 – {{ page.title }}
+## 13–14 April 2024 – {{ page.title }}
 {% capture album-date %}{{ page.date | date: "%Y-%m-%d" }}{% endcapture %}
 {% include album.html album=album-date %}

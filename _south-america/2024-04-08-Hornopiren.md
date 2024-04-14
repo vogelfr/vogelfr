@@ -1,8 +1,8 @@
 ---
-title: El Chaltén
+title: Hornopirén
 layout: album-page
-date: 2024-03-28
+date: 2024-04-08
 ---
-## 28–31 March 2024 – {{ page.title }}
+## 8–10 April 2024 – {{ page.title }}
 {% capture album-date %}{{ page.date | date: "%Y-%m-%d" }}{% endcapture %}
 {% include album.html album=album-date %}
