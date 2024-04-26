@@ -1,5 +1,5 @@
 ---
-title: Puerto Montt
+title: Puerto Montt, CL
 layout: album-page
 date: 2024-04-13
 ---

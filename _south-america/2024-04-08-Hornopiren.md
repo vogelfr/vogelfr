@@ -1,5 +1,5 @@
 ---
-title: Hornopirén
+title: Hornopirén, CL
 layout: album-page
 date: 2024-04-08
 ---

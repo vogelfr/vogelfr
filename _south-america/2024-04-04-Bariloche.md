@@ -1,5 +1,5 @@
 ---
-title: Bariloche
+title: Bariloche, AR
 layout: album-page
 date: 2024-04-04
 ---

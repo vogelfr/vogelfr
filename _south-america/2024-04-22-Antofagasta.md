@@ -1,8 +1,8 @@
 ---
-title: La Arena, CL
+title: Antofagasta, CL
 layout: album-page
-date: 2024-04-12
+date: 2024-04-22
 ---
-## 12–13 April 2024 – {{ page.title }}
+## 22–23 April 2024 – {{ page.title }}
 {% capture album-date %}{{ page.date | date: "%Y-%m-%d" }}{% endcapture %}
 {% include album.html album=album-date %}

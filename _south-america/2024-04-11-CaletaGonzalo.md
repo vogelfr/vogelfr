@@ -1,5 +1,5 @@
 ---
-title: Caleta Gonzalo
+title: Caleta Gonzalo, CL
 layout: album-page
 date: 2024-04-11
 ---

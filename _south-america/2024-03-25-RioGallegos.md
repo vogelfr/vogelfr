@@ -1,5 +1,5 @@
 ---
-title: Rio Gallegos
+title: Rio Gallegos, AR
 layout: album-page
 date: 2024-03-25
 ---
