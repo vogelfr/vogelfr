@@ -83,7 +83,7 @@ $(function() {
     var postURL = postURLs[index];
 
     $.get(postURL, function(data) {
-      $(data).find(".post").appendTo(".tag-master:not(.hidden) .post-list");
+      $(data).find(".post").wrap("<div class='post-content'></div>").parent().appendTo(".tag-master:not(.hidden) .post-list");
       callback();
     });
   }

@@ -11,13 +11,6 @@ function toDegreesMinutesAndSeconds(coordinate) {
 function convertDMS(lat, latRef, lng, lngRef) {
   
   var latitude = toDegreesMinutesAndSeconds(lat);
-
   var longitude = toDegreesMinutesAndSeconds(lng);
-
-  console.log("Latitude orig:\t" + lat);
-  console.log("Longitute orig:\t" + lng);
-  console.log("Latitude card:\t" + latRef);
-  console.log("Longitute card:\t" + lngRef);
-
   return latitude + " " + latRef + ", " + longitude + " " + lngRef;
 }
